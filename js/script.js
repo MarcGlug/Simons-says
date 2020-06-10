@@ -5,6 +5,11 @@ const sq1 = document.getElementById("square1");
 const sq2 = document.getElementById("square2");
 const sq3 = document.getElementById("square3");
 const sq4 = document.getElementById("square4");
+const test = document.getElementById("test");
+
+                //VARIABLES
+
+var code = [];
 
 //COLOR
 
@@ -25,44 +30,90 @@ const lightblue = "rgb(54, 229, 252)";
 
 sq1.addEventListener('click', (event) => {
     console.log(1);
-    sq1.style.backgroundColor = lightgreen;
-    sq1.style.boxShadow = "0px 0px 25px 5px rgb(22, 255, 22)";
-    setTimeout(formerColor,300, sq1, green);
+    lightUp(1);
 });
 
 sq2.addEventListener('click', (event) => {
     console.log(2);
-    sq2.style.backgroundColor = lightred;
-    sq2.style.boxShadow = "0px 0px 25px 5px rgb(255, 14, 14)";
-    setTimeout(formerColor,300, sq2, red);
+    lightUp(2); 
 });
 
 sq3.addEventListener('click', (event) => {
     console.log(3);
-    sq3.style.backgroundColor = lightyellow;
-    sq3.style.boxShadow = "0px 0px 25px 5px rgb(255, 251, 14)";
-    setTimeout(formerColor,300, sq3, yellow);
+    lightUp(3);
 });
 
 sq4.addEventListener('click', (event) => {
     console.log(4);
-    sq4.style.backgroundColor = lightblue;
-    sq4.style.boxShadow = "0px 0px 25px 5px rgb(0, 225, 255)";
-    setTimeout(formerColor,300, sq4, blue);
+    lightUp(4); 
 });
 
 //SIMON'S INPUT
 
+test.addEventListener('click', (event) =>{
+    newEntry();
+    throughArray(code);
+    console.log(code);
+})
 
 
-                //FUNCTIONS
+//FUNCTIONS
+
+/**
+ * Light a square 
+ * @param {integer} square Square's number to light up
+ */
+function lightUp(square){
+    if(square == 1){
+        sq1.style.backgroundColor = lightgreen;
+        sq1.style.boxShadow = "0px 0px 25px 5px rgb(22, 255, 22)";
+        setTimeout(lightDown,300, sq1, green);
+    }
+    if(square == 2){
+        sq2.style.backgroundColor = lightred;
+        sq2.style.boxShadow = "0px 0px 25px 5px rgb(255, 14, 14)";
+        setTimeout(lightDown,300, sq2, red);
+    }
+    if(square == 3){
+        sq3.style.backgroundColor = lightyellow;
+        sq3.style.boxShadow = "0px 0px 25px 5px rgb(255, 251, 14)";
+        setTimeout(lightDown,300, sq3, yellow);
+    }
+    if(square == 4){
+        sq4.style.backgroundColor = lightblue;
+        sq4.style.boxShadow = "0px 0px 25px 5px rgb(0, 225, 255)";
+        setTimeout(lightDown,300, sq4, blue);
+    }
+}
+
 
 /**
  * A function that gives a square his former state
  * @param {The target in DOM} square 
  * @param {Color value} color 
  */
-function formerColor(square, color){
+function lightDown(square, color){
     square.style.backgroundColor = color;
     square.style.boxShadow = "0px 0px 0px 0px";
+}
+
+/**
+ * Add a random number between 1 and 4 in the code array;
+ */
+function newEntry(){
+    var square_number = Math.floor(Math.random()*4)+1;
+    code.push(square_number);
+    return code;
+}
+
+function throughArray(array){
+    var index = 0;
+    setInterval(function() {
+        if (index < array.length) {
+            lightUp(array[index])
+            index++;
+        }else {
+            return;
+        }
+    }, 1000); return
 }
