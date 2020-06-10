@@ -9,7 +9,7 @@ const test = document.getElementById("test");
 
                 //VARIABLES
 
-var code = [];
+var codes = [];
 
 //COLOR
 
@@ -52,8 +52,8 @@ sq4.addEventListener('click', (event) => {
 
 test.addEventListener('click', (event) =>{
     newEntry();
-    throughArray(code);
-    console.log(code);
+    showInputs(codes);
+    console.log(codes);
 })
 
 
@@ -101,19 +101,15 @@ function lightDown(square, color){
  * Add a random number between 1 and 4 in the code array;
  */
 function newEntry(){
-    var square_number = Math.floor(Math.random()*4)+1;
-    code.push(square_number);
-    return code;
+    var code = Math.floor(Math.random()*4)+1;
+    codes.push(code);
+    return codes;
 }
 
-function throughArray(array){
-    var index = 0;
-    setInterval(function() {
-        if (index < array.length) {
-            lightUp(array[index])
-            index++;
-        }else {
-            return;
-        }
-    }, 1000); return
+function showInputs(codes){
+    codes.forEach((code, index) => {
+        setTimeout(() => {
+            lightUp(code);
+        },index*1000+1000)
+    })
 }
