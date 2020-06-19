@@ -1,0 +1,19 @@
+
+#square1, #square2, #square3, #square4 {
+    height: 200px;
+    width: 200px;
+    border: 2px solid black;
+}
+
+#square1 {
+    background-color: rgb(74, 177, 74);
+}
+#square2 {
+    background-color: rgb(177, 74, 74);
+}
+#square3 {
+    background-color: rgb(221, 219, 82);
+}
+#square4 {
+    background-color: rgb(74, 165, 177);
+}
