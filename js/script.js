@@ -6,10 +6,7 @@ const sq2 = document.getElementById("square2");
 const sq3 = document.getElementById("square3");
 const sq4 = document.getElementById("square4");
 const test = document.getElementById("test");
-
-                //VARIABLES
-
-var codes = [];
+const test2 = document.getElementById("test2");
 
 //COLOR
 
@@ -29,31 +26,78 @@ const lightblue = "rgb(54, 229, 252)";
 //PLAYER'S INPUT
 
 sq1.addEventListener('click', (event) => {
-    console.log(1);
-    lightUp(1);
+    if (canGuess == true) {
+        lightUp(1);
+        guess.push(1);
+        numberToGuess --;
+        console.log(guess);
+    }
 });
 
 sq2.addEventListener('click', (event) => {
-    console.log(2);
-    lightUp(2); 
+    if (canGuess == true){
+        lightUp(2); 
+        guess.push(2);
+        numberToGuess --;
+        console.log(guess);
+    }
 });
 
 sq3.addEventListener('click', (event) => {
-    console.log(3);
-    lightUp(3);
+    if (canGuess == true){
+        lightUp(3);
+        guess.push(3);
+        numberToGuess --;
+        console.log(guess);
+    }
 });
 
 sq4.addEventListener('click', (event) => {
-    console.log(4);
-    lightUp(4); 
+    if(canGuess == true){
+        lightUp(4); 
+        guess.push(4);
+        numberToGuess --;
+        console.log(guess);
+    }
 });
 
-//SIMON'S INPUT
+// PLAY "FUNCTION"
 
 test.addEventListener('click', (event) =>{
-    newEntry();
-    showInputs(codes);
-    console.log(codes);
+
+    let codes = [1,2,3,2];
+    var guess = [];
+    var canGuess = false;
+    var checked = false;
+    var lost = false;
+    var numberToGuess = 0;
+    var stillToGuess = 0;
+
+    while (lost == false) {
+        checked = false;
+        numberToGuess ++;
+        stillToGuess ++;
+        guess = [];
+        // newEntry();
+        showInputs(codes);
+        console.log(codes);
+        canGuess = true;
+        async function compareInputs(){
+            var guess = await playerInput(numberToGuess);
+            if(guess == codes){
+                lost = false;
+                console.log(numberToGuess);
+                console.log('code bon');
+                canGuess = false;
+    
+            }else{
+                lost = true;
+                alert('Perdu!');
+                canGuess = false;
+            }
+        }
+    }
+    
 })
 
 
@@ -113,3 +157,4 @@ function showInputs(codes){
         },index*1000+1000)
     })
 }
+
