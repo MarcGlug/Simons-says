@@ -37,7 +37,7 @@ const sounds = [0,sound1,sound2,sound3,sound4];
 
 
 const start = () => {
-    codes = [4,4];
+    codes = [];
     startBtn.style.visibility = "hidden";
     newRound();
 }
@@ -59,7 +59,7 @@ const clickASquare = (squareNum) => {
                 setTimeout(newRound,1500);
             }
         }else{
-            alert("GAME OVER");
+            alert("GAME OVER! Ton score est de " + codes.length + " tours.");
             startBtn.style.visibility = "visible";
         };
     }else{

@@ -7,14 +7,16 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Simon's says</title>
     </head>
-    <body class="vh-100 w-100 d-inline-block">
-        <div class="row w-100 h-75 d-flex justify-content-around align-content-center">
+    <body class="vh-100 w-100 d-inline-block py-3">
+        <img src="img/mocky.png" alt="mocky" class="d-flex mx-auto">
+        <h1 class="text-center mt-5 mb-0">MOCKY'S SAYS</h1>
+        <div class="row w-100 h-50 d-flex justify-content-around align-content-center">
             <div id="square1" onclick="clickASquare(1)"></div>
             <div id="square2" onclick="clickASquare(2)"></div>
             <div id="square3" onclick="clickASquare(3)"></div>
             <div id="square4" onclick="clickASquare(4)"></div>
         </div>
-        <button id="startBtn" onclick="start()" class="btn btn-primary d-flex mx-auto">Start</button>
+        <button id="startBtn" onclick="start()" class="btn btn-primary d-flex mx-auto">Démarrer</button>
         <audio id="sound1" src="sound/moteur.mp3"></audio>
         <audio id="sound2" src="sound/ceCon.mp3"></audio>
         <audio id="sound3" src="sound/ohlala.mp3"></audio>
