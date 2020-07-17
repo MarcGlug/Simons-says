@@ -20,86 +20,32 @@ const lightred = "rgb(233, 59, 59)";
 const lightyellow = "rgb(250, 247, 53)";
 const lightblue = "rgb(54, 229, 252)";
 
+var canGuess = true;
+var codes = [];
+var codesToGuess = [];
 
                     //SERIOUS STUFF!
 
-//PLAYER'S INPUT
+const newRound = () => {
+    codes.push(Math.ceil(Math.random()*4));
+    codesToGuess = [...codes];
+    showInputs(codes);
+}
 
-sq1.addEventListener('click', (event) => {
-    if (canGuess == true) {
-        lightUp(1);
-        guess.push(1);
-        numberToGuess --;
-        console.log(guess);
-    }
-});
+const clickASquare = (squareNum) => {
 
-sq2.addEventListener('click', (event) => {
-    if (canGuess == true){
-        lightUp(2); 
-        guess.push(2);
-        numberToGuess --;
-        console.log(guess);
-    }
-});
-
-sq3.addEventListener('click', (event) => {
-    if (canGuess == true){
-        lightUp(3);
-        guess.push(3);
-        numberToGuess --;
-        console.log(guess);
-    }
-});
-
-sq4.addEventListener('click', (event) => {
     if(canGuess == true){
-        lightUp(4); 
-        guess.push(4);
-        numberToGuess --;
-        console.log(guess);
-    }
-});
-
-// PLAY "FUNCTION"
-
-test.addEventListener('click', (event) =>{
-
-    let codes = [1,2,3,2];
-    var guess = [];
-    var canGuess = false;
-    var checked = false;
-    var lost = false;
-    var numberToGuess = 0;
-    var stillToGuess = 0;
-
-    while (lost == false) {
-        checked = false;
-        numberToGuess ++;
-        stillToGuess ++;
-        guess = [];
-        // newEntry();
-        showInputs(codes);
-        console.log(codes);
-        canGuess = true;
-        async function compareInputs(){
-            var guess = await playerInput(numberToGuess);
-            if(guess == codes){
-                lost = false;
-                console.log(numberToGuess);
-                console.log('code bon');
-                canGuess = false;
-    
-            }else{
-                lost = true;
-                alert('Perdu!');
-                canGuess = false;
+        let check = codesToGuess.shift();
+        if(squareNum == check){
+            lightUp(squareNum); 
+            if(codesToGuess.length == 0){
+                newRound();
             }
-        }
+        }else{alert("FAUX!")};
+    }else{
+        return;
     }
-    
-})
-
+}
 
 //FUNCTIONS
 
@@ -141,20 +87,12 @@ function lightDown(square, color){
     square.style.boxShadow = "0px 0px 0px 0px";
 }
 
-/**
- * Add a random number between 1 and 4 in the code array;
- */
-function newEntry(){
-    var code = Math.floor(Math.random()*4)+1;
-    codes.push(code);
-    return codes;
-}
 
 function showInputs(codes){
     codes.forEach((code, index) => {
         setTimeout(() => {
             lightUp(code);
         },index*1000+1000)
-    })
+    });
 }
 
