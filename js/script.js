@@ -5,8 +5,7 @@ const sq1 = document.getElementById("square1");
 const sq2 = document.getElementById("square2");
 const sq3 = document.getElementById("square3");
 const sq4 = document.getElementById("square4");
-const test = document.getElementById("test");
-const test2 = document.getElementById("test2");
+const startBtn = document.getElementById("startBtn");
 
 //COLOR
 
@@ -20,13 +19,21 @@ const lightred = "rgb(233, 59, 59)";
 const lightyellow = "rgb(250, 247, 53)";
 const lightblue = "rgb(54, 229, 252)";
 
-var canGuess = true;
+var canGuess;
 var codes = [];
 var codesToGuess = [];
 
                     //SERIOUS STUFF!
 
+
+const start = () => {
+    codes = [];
+    startBtn.style.visibility = "hidden";
+    newRound();
+}
+
 const newRound = () => {
+    canGuess = false;
     codes.push(Math.ceil(Math.random()*4));
     codesToGuess = [...codes];
     showInputs(codes);
@@ -41,7 +48,10 @@ const clickASquare = (squareNum) => {
             if(codesToGuess.length == 0){
                 newRound();
             }
-        }else{alert("FAUX!")};
+        }else{
+            alert("GAME OVER");
+            startBtn.style.visibility = "visible";
+        };
     }else{
         return;
     }
@@ -94,5 +104,6 @@ function showInputs(codes){
             lightUp(code);
         },index*1000+1000)
     });
+    setTimeout(()=> {canGuess = true}, codes.length*1000+500);
 }
 
