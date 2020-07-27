@@ -65,7 +65,7 @@ const clickASquare = (squareNum) => {
                 setTimeout(newRound,1500);
             }
         }else{
-            alert("GAME OVER! Ton score est de " + codes.length + " tours.");
+            alert("T'es nul, tu n'as aucune notion. Tu n'as fait que " + codes.length + " tours.");
             startBtn.style.visibility = "visible";
             canGuess = false;
         };
