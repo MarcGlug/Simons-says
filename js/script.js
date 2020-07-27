@@ -19,6 +19,12 @@ const lightred = "rgb(233, 59, 59)";
 const lightyellow = "rgb(250, 247, 53)";
 const lightblue = "rgb(54, 229, 252)";
 
+//SHADOWS 
+
+const shadowColor1 = "rgb(22, 255, 22)";
+const shadowColor2 = "rgb(255, 14, 14)";
+const shadowColor3 = "rgb(255, 251, 14)";
+const shadowColor4 = "rgb(0, 225, 255)";
 
 //SOUNDS
 
@@ -61,6 +67,7 @@ const clickASquare = (squareNum) => {
         }else{
             alert("GAME OVER! Ton score est de " + codes.length + " tours.");
             startBtn.style.visibility = "visible";
+            canGuess = false;
         };
     }else{
         return;
@@ -75,31 +82,25 @@ const clickASquare = (squareNum) => {
  */
 function lightUp(square){
     if(square == 1){
-        sq1.style.backgroundColor = lightgreen;
-        sq1.style.boxShadow = "0px 0px 25px 5px rgb(22, 255, 22)";
-        sound1.play();
-        setTimeout(lightDown,1500, sq1, green);
+        lightASquare(sq1, lightgreen, green, shadowColor1, sound1);
     }
     if(square == 2){
-        sq2.style.backgroundColor = lightred;
-        sq2.style.boxShadow = "0px 0px 25px 5px rgb(255, 14, 14)";
-        sound2.play();
-        setTimeout(lightDown,1500, sq2, red);
+        lightASquare(sq2, lightred, red, shadowColor2, sound2);
     }
     if(square == 3){
-        sq3.style.backgroundColor = lightyellow;
-        sq3.style.boxShadow = "0px 0px 25px 5px rgb(255, 251, 14)";
-        sound3.play();
-        setTimeout(lightDown,1500, sq3, yellow);
+        lightASquare(sq3, lightyellow, yellow, shadowColor3, sound3);
     }
     if(square == 4){
-        sq4.style.backgroundColor = lightblue;
-        sq4.style.boxShadow = "0px 0px 25px 5px rgb(0, 225, 255)";
-        sound4.play();
-        setTimeout(lightDown,1500, sq4, blue);
+        lightASquare(sq4, lightblue, blue, shadowColor4, sound4);
     }
 }
 
+const lightASquare = (square, lightColor, formerColor, shadowColor, sound) => {
+    square.style.backgroundColor = lightColor;
+    square.style.boxShadow = " 0px 0px 25px 5px " + shadowColor;
+    sound.play();
+    setTimeout(lightDown,1500, square, formerColor);
+}
 
 /**
  * A function that gives a square his former state
@@ -108,7 +109,7 @@ function lightUp(square){
  */
 function lightDown(square, color){
     square.style.backgroundColor = color;
-    square.style.boxShadow = "0px 0px 0px 0px";
+    square.style.boxShadow = "none";
 }
 
 
@@ -120,4 +121,3 @@ function showInputs(codes){
     });
     setTimeout(()=> {canGuess = true}, codes.length*1500+1500);
 }
-

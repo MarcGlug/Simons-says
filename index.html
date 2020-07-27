@@ -3,20 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Spartan:wght@500&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
-        <title>Simon's says</title>
+        <title>Mocky says</title>
     </head>
-    <body class="vh-100 w-100 d-inline-block py-3">
-        <img src="img/mocky.png" alt="mocky" class="d-flex mx-auto">
-        <h1 class="text-center mt-5 mb-0">MOCKY'S SAYS</h1>
-        <div class="row w-100 h-50 d-flex justify-content-around align-content-center">
-            <div id="square1" onclick="clickASquare(1)"></div>
-            <div id="square2" onclick="clickASquare(2)"></div>
-            <div id="square3" onclick="clickASquare(3)"></div>
-            <div id="square4" onclick="clickASquare(4)"></div>
+    <body class="d-inline-block">
+        <div class="align-content-center buttons center">
+            <h1 class="text-center mb-3">MOCKY SAYS</h1>
+            <div class="buttons">
+                <img src="img/mocky.png" alt="mocky" class="d-flex mx-auto center">
+                <div class="d-flex justify-content-center">
+                    <div id="square1" onclick="clickASquare(1)"></div>
+                    <div id="square2" onclick="clickASquare(2)"></div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div id="square3" onclick="clickASquare(3)"></div>
+                    <div id="square4" onclick="clickASquare(4)"></div>
+                </div>
+            </div>
+            <button id="startBtn" onclick="start()" class="btn d-flex mx-auto mt-4">Démarrer</button>
         </div>
-        <button id="startBtn" onclick="start()" class="btn btn-primary d-flex mx-auto">Démarrer</button>
         <audio id="sound1" src="sound/moteur.mp3"></audio>
         <audio id="sound2" src="sound/ceCon.mp3"></audio>
         <audio id="sound3" src="sound/ohlala.mp3"></audio>
