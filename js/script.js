@@ -77,7 +77,7 @@ const clickASquare = (squareNum) => {
 //FUNCTIONS
 
 /**
- * Light a square 
+ * Check which square to light
  * @param {integer} square Square's number to light up
  */
 function lightUp(square){
@@ -95,6 +95,14 @@ function lightUp(square){
     }
 }
 
+/**
+ * Light a specific square
+ * @param {number} square The number of the square to light up
+ * @param {Text} lightColor The color code when lighten 
+ * @param {text} formerColor The former color of the square
+ * @param {text} shadowColor The color of the shadow when the square is lighten
+ * @param {} sound The DOM element audio to play 
+ */
 const lightASquare = (square, lightColor, formerColor, shadowColor, sound) => {
     square.style.backgroundColor = lightColor;
     square.style.boxShadow = " 0px 0px 25px 5px " + shadowColor;
@@ -104,15 +112,18 @@ const lightASquare = (square, lightColor, formerColor, shadowColor, sound) => {
 
 /**
  * A function that gives a square his former state
- * @param {The target in DOM} square 
- * @param {Color value} color 
+ * @param {} square The DOM element 
+ * @param {Text} color The former color of the square
  */
 function lightDown(square, color){
     square.style.backgroundColor = color;
     square.style.boxShadow = "none";
 }
 
-
+/**
+ * Function that show the input code to the user
+ * @param {Array} codes Array of value from 1 to 4
+ */
 function showInputs(codes){
     codes.forEach((code, index) => {
         setTimeout(() => {
